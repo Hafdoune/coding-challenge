@@ -20,16 +20,6 @@ class CategoryRepository implements CategoryRepositoryInterface
         return $this->category->create($data);
     }
 
-    public function update(int $id, array $data): bool
-    {
-        return $this->category->where('id', $id)->update($data);
-    }
-
-    public function delete(int $id): bool
-    {
-        return $this->category->destroy($id);
-    }
-
     public function getAll(): Collection
     {
         return $this->category->with('parentCategory')->get();

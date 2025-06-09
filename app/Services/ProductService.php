@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 
@@ -38,6 +39,11 @@ class ProductService
         }
 
         return $this->productRepository->findById($product->id);
+    }
+
+    public function getProducts(): Collection
+    {
+        return $this->productRepository->getAll();
     }
 
     private function storeImage(UploadedFile $image): string

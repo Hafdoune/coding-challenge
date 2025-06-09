@@ -11,13 +11,7 @@ interface ProductRepositoryInterface
 
     public function create(array $data): Product;
 
-    public function update(int $id, array $data): bool;
-
-    public function delete(int $id): bool;
-
     public function getAll(): Collection;
 
     public function attachCategories(Product $product, array $categoryIds): void;
-
-    public function detachCategories(Product $product, array $categoryIds = []): void;
 }

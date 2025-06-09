@@ -64,20 +64,6 @@
             <span class="text-2xl font-bold text-green-600">
               ${{ parseFloat(product.price).toFixed(2) }}
             </span>
-            <div class="flex space-x-2">
-              <Link
-                :href="route('products.show', product.id)"
-                class="text-blue-600 hover:text-blue-800 text-sm"
-              >
-                View
-              </Link>
-              <Link
-                :href="route('products.edit', product.id)"
-                class="text-gray-600 hover:text-gray-800 text-sm"
-              >
-                Edit
-              </Link>
-            </div>
           </div>
         </div>
       </div>

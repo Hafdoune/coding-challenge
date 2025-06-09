@@ -25,16 +25,6 @@ class ProductRepository implements ProductRepositoryInterface
         return $this->product->create($data);
     }
 
-    public function update(int $id, array $data): bool
-    {
-        return $this->product->where('id', $id)->update($data);
-    }
-
-    public function delete(int $id): bool
-    {
-        return $this->product->destroy($id);
-    }
-
     public function getAll(): Collection
     {
         return $this->product->with('categories')->get();
@@ -43,14 +33,5 @@ class ProductRepository implements ProductRepositoryInterface
     public function attachCategories(Product $product, array $categoryIds): void
     {
         $product->categories()->sync($categoryIds);
-    }
-
-    public function detachCategories(Product $product, array $categoryIds = []): void
-    {
-        if (empty($categoryIds)) {
-            $product->categories()->detach();
-        } else {
-            $product->categories()->detach($categoryIds);
-        }
     }
 }
