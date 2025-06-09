@@ -11,8 +11,6 @@ interface ProductRepositoryInterface
 
     public function create(array $data): Product;
 
-    public function getAll(): Collection;
-
     public function getWithFilters(array $filters = [], ?string $sortBy = null, string $sortDirection = 'asc'): Collection;
 
     public function attachCategories(Product $product, array $categoryIds): void;

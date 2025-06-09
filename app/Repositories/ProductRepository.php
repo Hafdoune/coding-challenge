@@ -25,11 +25,6 @@ class ProductRepository implements ProductRepositoryInterface
         return $this->product->create($data);
     }
 
-    public function getAll(): Collection
-    {
-        return $this->product->with('categories')->get();
-    }
-
     public function getWithFilters(array $filters = [], ?string $sortBy = null, string $sortDirection = 'asc'): Collection
     {
         $query = $this->product->with('categories');

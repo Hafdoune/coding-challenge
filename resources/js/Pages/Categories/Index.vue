@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { Head, Link, router } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import CategoryRow from "@/Components/CategoryRow.vue";
 
 const props = defineProps({

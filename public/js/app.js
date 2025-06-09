@@ -28672,9 +28672,6 @@ __webpack_require__.r(__webpack_exports__);
       get Link() {
         return _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_0__.Link;
       },
-      get router() {
-        return _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_0__.router;
-      },
       CategoryRow: _Components_CategoryRow_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
