@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +15,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    return redirect()->route('products.index');
 });
+
+Route::resource('products', ProductController::class);
