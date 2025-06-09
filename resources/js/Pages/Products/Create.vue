@@ -219,7 +219,32 @@ const handleImageUpload = (event) => {
 }
 
 const submitForm = () => {
-    console.log('Form submitted with data:', form);
-    
+  if (processing.value) return
+  
+  processing.value = true
+  
+  // Create FormData object to handle file upload
+  const formData = new FormData()
+  formData.append('name', form.name)
+  formData.append('description', form.description)
+  formData.append('price', form.price)
+  if (form.image) {
+    formData.append('image', form.image)
+  }
+  form.category_ids.forEach(id => {
+    formData.append('categories[]', id)
+  })
+  
+  router.post(route('products.store'), Object.fromEntries(formData), {
+    onFinish: () => {
+      processing.value = false
+    },
+    onSuccess: () => {
+      // Form will redirect on success
+    },
+    onError: () => {
+      // Errors will be handled by Inertia
+    }
+  })
 }
 </script>

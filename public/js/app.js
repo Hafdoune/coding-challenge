@@ -28602,7 +28602,31 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
     var submitForm = function submitForm() {
-      console.log('Form submitted with data:', form);
+      if (processing.value) return;
+      processing.value = true;
+
+      // Create FormData object to handle file upload
+      var formData = new FormData();
+      formData.append('name', form.name);
+      formData.append('description', form.description);
+      formData.append('price', form.price);
+      if (form.image) {
+        formData.append('image', form.image);
+      }
+      form.category_ids.forEach(function (id) {
+        formData.append('categories[]', id);
+      });
+      _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_1__.router.post(route('products.store'), Object.fromEntries(formData), {
+        onFinish: function onFinish() {
+          processing.value = false;
+        },
+        onSuccess: function onSuccess() {
+          // Form will redirect on success
+        },
+        onError: function onError() {
+          // Errors will be handled by Inertia
+        }
+      });
     };
     var __returned__ = {
       props: props,
