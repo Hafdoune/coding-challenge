@@ -7,12 +7,6 @@ A modern web application built with Laravel and Vue.js.
 - Product Management System
   - List products with filtering and sorting
   - Create new products via Web or CLI
-  - Category-based organization
-  - Image support for products
-  - Price range filtering
-- Modern UI with Vue.js and Inertia.js
-- Clean and maintainable codebase with Service Pattern
-- RESTful API architecture
 
 ## Requirements
 
