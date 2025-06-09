@@ -24,4 +24,12 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return $this->category->with('parentCategory')->get();
     }
+
+    public function findOrCreateByName(string $name, ?int $parentId = null): Category
+    {
+        return $this->category->firstOrCreate([
+            'name' => $name,
+            'parent_category_id' => $parentId,
+        ]);
+    }
 }

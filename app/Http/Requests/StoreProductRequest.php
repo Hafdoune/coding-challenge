@@ -29,7 +29,6 @@ class StoreProductRequest extends FormRequest
             'price' => ['required', 'numeric', 'min:0', 'max:999999.99'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'categories' => ['nullable', 'array'],
-            'categories.*' => ['exists:categories,id'],
         ];
     }
 
@@ -47,7 +46,6 @@ class StoreProductRequest extends FormRequest
             'image.image' => 'The uploaded file must be an image.',
             'image.mimes' => 'Image must be a JPEG, PNG, JPG, or GIF file.',
             'image.max' => 'Image size cannot exceed 2MB.',
-            'categories.*.exists' => 'One or more selected categories do not exist.',
         ];
     }
 }

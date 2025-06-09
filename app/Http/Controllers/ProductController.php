@@ -22,7 +22,10 @@ class ProductController extends Controller
         $products = $this->productService->getProducts();
 
         return Inertia::render('Products/Index', [
-            'products' => $products,
+            'products' => $products->map(function ($product) {
+                $product->image_url = $product->image_url ?? null;
+                return $product;
+            }),
         ]);
     }
 

@@ -10,4 +10,6 @@ interface CategoryRepositoryInterface
     public function create(array $data): Category;
 
     public function getAll(): Collection;
+
+    public function findOrCreateByName(string $name, ?int $parentId = null): Category;
 }

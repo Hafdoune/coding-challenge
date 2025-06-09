@@ -2,20 +2,24 @@
 
 namespace App\Services;
 
-use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Database\Eloquent\Collection;
+use App\Interfaces\ProductRepositoryInterface;
+use App\Interfaces\CategoryRepositoryInterface;
 
 class ProductService
 {
     private $productRepository;
+    private $categoryRepository;
 
     public function __construct(
-        ProductRepositoryInterface $productRepository
+        ProductRepositoryInterface $productRepository,
+        CategoryRepositoryInterface $categoryRepository
     ) {
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function createProduct(array $data): Product
@@ -35,7 +39,8 @@ class ProductService
 
         // Attach categories if provided
         if (!empty($data['categories'])) {
-            $this->productRepository->attachCategories($product, $data['categories']);
+            $categoryIds = $this->resolveCategoryIds($data['categories']);
+            $this->productRepository->attachCategories($product, $categoryIds);
         }
 
         return $this->productRepository->findById($product->id);
@@ -44,6 +49,24 @@ class ProductService
     public function getProducts(): Collection
     {
         return $this->productRepository->getAll();
+    }
+
+    private function resolveCategoryIds(array $categories): array
+    {
+        $categoryIds = [];
+
+        foreach ($categories as $category) {
+            if (is_numeric($category)) {
+                // Category ID provided
+                $categoryIds[] = (int) $category;
+            } elseif (is_string($category)) {
+                // Category name provided - find or create
+                $categoryModel = $this->categoryRepository->findOrCreateByName($category);
+                $categoryIds[] = $categoryModel->id;
+            }
+        }
+
+        return array_unique($categoryIds);
     }
 
     private function storeImage(UploadedFile $image): string
