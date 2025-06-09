@@ -16,28 +16,4 @@ class CategoryFactory extends Factory
             'parent_category_id' => null,
         ];
     }
-
-    /**
-     * Indicate that the category is a child category.
-     */
-    public function child()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'parent_category_id' => Category::factory()->create()->id,
-            ];
-        });
-    }
-
-    /**
-     * Indicate that the category is a root category.
-     */
-    public function root()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'parent_category_id' => null,
-            ];
-        });
-    }
 }
