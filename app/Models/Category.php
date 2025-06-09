@@ -31,4 +31,14 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+
+    public function scopeRoots($query)
+    {
+        return $query->whereNull('parent_category_id');
+    }
+
+    public function descendants(): HasMany
+    {
+        return $this->children()->with('descendants');
+    }
 }

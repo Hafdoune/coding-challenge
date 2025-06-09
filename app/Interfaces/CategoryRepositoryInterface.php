@@ -12,4 +12,6 @@ interface CategoryRepositoryInterface
     public function getAll(): Collection;
 
     public function findOrCreateByName(string $name, ?int $parentId = null): Category;
+
+    public function getCategoryTree(): Collection;
 }

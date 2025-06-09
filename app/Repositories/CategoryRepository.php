@@ -32,4 +32,13 @@ class CategoryRepository implements CategoryRepositoryInterface
             'parent_category_id' => $parentId,
         ]);
     }
+
+    public function getCategoryTree(): Collection
+    {
+        return $this->category->roots()
+            ->with(['descendants' => function ($query) {
+                $query->with('descendants');
+            }])
+            ->get();
+    }
 }

@@ -4,6 +4,12 @@
       <h1 class="text-3xl font-bold text-gray-900">Products</h1>
       <div class="flex space-x-4">
         <Link
+          :href="route('categories.index')"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+        >
+          Categories
+        </Link>
+        <Link 
           :href="route('products.create')"
           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
         >
