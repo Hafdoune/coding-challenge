@@ -235,16 +235,11 @@ const submitForm = () => {
     formData.append('categories[]', id)
   })
   
-  router.post(route('products.store'), Object.fromEntries(formData), {
+  router.post(route('products.store'), formData, {
+    forceFormData: true,
     onFinish: () => {
       processing.value = false
     },
-    onSuccess: () => {
-      // Form will redirect on success
-    },
-    onError: () => {
-      // Errors will be handled by Inertia
-    }
   })
 }
 </script>

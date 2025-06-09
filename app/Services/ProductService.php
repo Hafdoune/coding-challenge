@@ -46,9 +46,9 @@ class ProductService
         return $this->productRepository->findById($product->id);
     }
 
-    public function getProducts(): Collection
+    public function getProducts(array $filters = [], ?string $sortBy = null, string $sortDirection = 'asc'): Collection
     {
-        return $this->productRepository->getAll();
+        return $this->productRepository->getWithFilters($filters, $sortBy, $sortDirection);
     }
 
     private function resolveCategoryIds(array $categories): array
